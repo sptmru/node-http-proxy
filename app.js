@@ -20,7 +20,7 @@ app.use('/', async function (clientRequest, clientResponse) {
   }
   let path = clientRequest.url;
   path = path === '/' ? '/ru/feed/' : path;
-  path = path.endsWith('/') ? path : path + '/';
+  // path = path.endsWith('/') ? path : path + '/';
 
   let endsWithFeed = path.endsWith('feed/');
   let containsArticles = path.includes('articles');
