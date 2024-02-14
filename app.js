@@ -19,8 +19,8 @@ app.use('/', async function (clientRequest, clientResponse) {
     parsedSSL = http;
   }
   let path = clientRequest.url;
-  path = path === '/' ? '/auth/login/' : path;
-  path = path.endsWith('/') ? path : path + '/';
+  path = path === '/' ? '/auth/login' : path;
+  // path = path.endsWith('/') ? path : path + '/';
 
   // let endsWithFeed = path.endsWith('feed/');
   // let containsArticles = path.includes('articles');
@@ -38,7 +38,7 @@ app.use('/', async function (clientRequest, clientResponse) {
     }
   };
 
-  console.log(`Trying to access ${options.hostname}/${options.path}`);
+  console.log(`Trying to access ${options.hostname}${options.path}`);
 
   const serverRequest = parsedSSL.request(options, function (serverResponse) {
     let body = '';
