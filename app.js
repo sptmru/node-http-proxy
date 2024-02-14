@@ -7,7 +7,7 @@ const app = express();
 const targetUrl = process.env.TARGET_URL || 'https://habr.com';
 const proxyServerPort = process.env.PROXY_SERVER_PORT || 8080;
 
-app.use('/', function (clientRequest, clientResponse) {
+app.use('/', async function (clientRequest, clientResponse) {
   const parsedHost = targetUrl.split('/').splice(2).splice(0, 1).join('/');
   let parsedPort;
   let parsedSSL;
@@ -19,7 +19,12 @@ app.use('/', function (clientRequest, clientResponse) {
     parsedSSL = http;
   }
   let path = clientRequest.url;
+  path = path === '/' ? '/en/feed/' : path;
   path = path.endsWith('/') ? path : path + '/';
+
+  let endsWithFeed = path.endsWith('feed/');
+  let containsArticles = path.includes('articles');
+  path = endsWithFeed || containsArticles ? path : path + 'articles/';
 
   const options = {
     hostname: parsedHost,
@@ -30,6 +35,8 @@ app.use('/', function (clientRequest, clientResponse) {
       'User-Agent': clientRequest.headers['user-agent']
     }
   };
+
+  console.log(`Trying to access ${options.hostname}/${options.path}`);
 
   const serverRequest = parsedSSL.request(options, function (serverResponse) {
     let body = '';
