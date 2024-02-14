@@ -19,7 +19,7 @@ app.use('/', async function (clientRequest, clientResponse) {
     parsedSSL = http;
   }
   let path = clientRequest.url;
-  path = path === '/' ? '/en/feed/' : path;
+  path = path === '/' ? '/ru/feed/' : path;
   path = path.endsWith('/') ? path : path + '/';
 
   let endsWithFeed = path.endsWith('feed/');
