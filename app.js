@@ -26,6 +26,8 @@ app.use('/', async function (clientRequest, clientResponse) {
   let containsArticles = path.includes('articles');
   path = endsWithFeed || containsArticles ? path : path + 'articles/';
 
+  clientResponse.setHeader('Cache-Control', 'no-cache, must-revalidate');
+
   const options = {
     hostname: parsedHost,
     port: parsedPort,
