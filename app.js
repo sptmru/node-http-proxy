@@ -4,7 +4,7 @@ import http from 'http';
 
 const app = express();
 
-const targetUrl = process.env.TARGET_URL || 'https://habr.com';
+const targetUrl = process.env.TARGET_URL || 'https://ffr.su';
 const proxyServerPort = process.env.PROXY_SERVER_PORT || 8080;
 
 app.use('/', async function (clientRequest, clientResponse) {
