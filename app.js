@@ -22,9 +22,9 @@ app.use('/', async function (clientRequest, clientResponse) {
   path = path === '/' ? '/ru/feed/' : path;
   // path = path.endsWith('/') ? path : path + '/';
 
-  let endsWithFeed = path.endsWith('feed/');
-  let containsArticles = path.includes('articles');
-  path = endsWithFeed || containsArticles ? path : path + 'articles/';
+  // let endsWithFeed = path.endsWith('feed/');
+  // let containsArticles = path.includes('articles');
+  // path = endsWithFeed || containsArticles ? path : path + 'articles/';
 
   clientResponse.setHeader('Cache-Control', 'no-cache, must-revalidate');
 
